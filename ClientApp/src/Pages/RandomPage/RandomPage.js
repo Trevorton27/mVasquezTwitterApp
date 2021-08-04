@@ -100,9 +100,10 @@ class RandomPage extends Component{
                 <div className="row" id="random-blerb">
                     <h3> See a random tweet from one of these fine five people.</h3>
                 </div>
-                <div className="row">
+                <div className="row ">
                     <div className="col-md-4 col-sm-12 col-12" id="five-users-holder">
-                        <div className="row">
+                  
+                        <div className="row ">
                             {
                                 this.state.definedUsers.map(function (user, index) {
                                     return (
@@ -117,7 +118,7 @@ class RandomPage extends Component{
 
                                 })
                             }
-                        </div>
+                            </div>
                     </div>
                     <div className="col-md-8 col-sm-12 col-12" id="big-tweet-holder">
                         {

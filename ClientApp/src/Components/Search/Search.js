@@ -3,17 +3,24 @@ import './Search.css';
 
 
 const Search = props => {
+  
+    
     return (
         <div className="container">
+            <form>
             <div className="row">
                 <div class="input-group mb-3 col-md-8 offset-md-2" id="search-form">
-                    <input 
+                        <input
+                        value={props.user_query}
                         type="text"
                         id="search-bar"
                         class="form-control"
                         placeholder="Search Twitter"
                         onChange={props.handleChange}
-                    />
+                        />
+                        <button onClick={props.clearInputField}>
+                            X
+                        </button>
                 </div>
             </div>
             <div className="row">
@@ -21,13 +28,16 @@ const Search = props => {
                     <button
                         className="get-buttons"
                         id="get-tweets"
-                        onClick={props.populateTweetsData}
+                            onClick={props.populateTweetsData}
+                        
                     >
                         Get Tweets
                     </button>
                 </div>
-            </div>
+                </div>
+           </form>
         </div>
+            
     );
   }
 

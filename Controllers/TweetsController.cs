@@ -1,7 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using Tweets.Data;
-using RestSharp;
-using RestSharp.Authenticators;
 using System.Threading.Tasks;
 
 namespace Tweets.Controllers
@@ -12,7 +10,7 @@ namespace Tweets.Controllers
         private ITweetService _service;
         public TweetsController(ITweetService service)
         {
-            this._service = service;
+            _service = service;
         }
 
         [HttpGet("[action]/{user_query}")]

@@ -18,15 +18,20 @@ class SearchPage extends Component{
         };
         this.handleChange = this.handleChange.bind(this);
         this.populateTweetsData = this.populateTweetsData.bind(this);
+        this.clearInputField = this.clearInputField.bind(this);
+
     }
 
-    handleChange(event) {
+    handleChange(e) {
+      //  e.preventDefault();
         this.setState({
-            user_query: event.target.value
-        })
+            user_query: e.target.value
+        });
+        console.log(this.state.user_query)
     }
 
-    populateTweetsData() {
+    populateTweetsData(e) {
+        e.preventDefault();
         if (this.state.user_query) {
             axios.get(`api/Tweets/GetTenUserQueriedTweets/${this.state.user_query}`).then(result => {
                 const response = result.data;
@@ -39,9 +44,14 @@ class SearchPage extends Component{
                     tweets: [],
                     error: true
                 });
-            }                
-            )
+            })
         }
+    }
+
+    clearInputField() {
+        this.setState({
+            user_query: ""
+        });
     }
 
     tweetsOrError() {
@@ -83,6 +93,8 @@ class SearchPage extends Component{
                 <Search
                     populateTweetsData={this.populateTweetsData}
                     handleChange={this.handleChange}
+                    clearInputField={this.clearInputField}
+                    user_query={this.state.user_query}
                 />
             <br></br>
             <div className="container">

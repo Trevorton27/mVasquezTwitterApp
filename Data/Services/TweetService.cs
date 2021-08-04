@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using RestSharp;
 using RestSharp.Authenticators;
+using Tweets.Data;
 
 namespace Tweets.Data
 {
@@ -22,12 +23,12 @@ namespace Tweets.Data
 
             for (int i = 0; i < 10; i++)
             {
-                response.data[i].name = response.includes[0].users[i].name;
-                response.data[i].profile_image_url = response.includes[0].users[i].profile_image_url;
-                response.data[i].username = response.includes[0].users[i].username;
+                response.Data[i].Name = response.Includes[0].Users[i].Name;
+                response.Data[i].Profile_image_url = response.Includes[0].Users[i].Profile_image_url;
+                response.Data[i].Username = response.Includes[0].Users[i].Username;
             }
 
-            return response.data;
+            return response.Data;
         }
 
         public async Task<List<Tweet>> GetOneAuthorsTweets(string author_id)
@@ -42,12 +43,12 @@ namespace Tweets.Data
             
             for (int i = 0; i < 10; i++)
             {
-                response.data[i].name = response.includes[0].users[0].name;
-                response.data[i].profile_image_url = response.includes[0].users[0].profile_image_url;
-                response.data[i].username = response.includes[0].users[0].username;
+                response.Data[i].Name = response.Includes[0].Users[0].Name;
+                response.Data[i].Profile_image_url = response.Includes[0].Users[0].Profile_image_url;
+                response.Data[i].Username = response.Includes[0].Users[0].Username;
             }
 
-            return response.data;
+            return response.Data;
         }
     }
 }

@@ -1,7 +1,13 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\ClientApp\\src",
+    "\\ClientApp\\src\\Pages",
+    "\\ClientApp\\src\\Pages\\SearchPage",
+    "\\Controllers",
+    "\\Data",
+    "\\Data\\Services"
   ],
-  "SelectedNode": "\\Twitter-Solution.sln",
+  "SelectedNode": "\\twitter-showcase.sln",
   "PreviewInSolutionExplorer": false
 }
