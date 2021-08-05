@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using twitter_showcase_app.Data.Models;
 
 namespace Tweets.Data
 {
@@ -7,6 +8,7 @@ namespace Tweets.Data
         public List<Tweet> Data { get; set; }
         public List<Includes> Includes { get; set; }
     }
+
     public class Tweet
     {
         public long Id { get; set; }
@@ -18,21 +20,9 @@ namespace Tweets.Data
         public string Profile_image_url { get; set; }
         public string Username { get; set; }
     }
+
     public class Includes
     {
         public List<TwitterUsers> Users { get; set; }
-    }
-    public class TwitterUsers
-    {
-        public string Name { get; set; }
-        public string Profile_image_url { get; set; }
-        public string Username { get; set; }
-        public long Id { get; set; }
-    }
-    public class Public_Metrics
-    {
-        public long Retweet_count { get; set; }
-        public long Reply_count { get; set; }
-        public long Like_count { get; set; }
     }
 }
