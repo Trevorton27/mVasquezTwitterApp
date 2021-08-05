@@ -3,21 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using RestSharp;
 using RestSharp.Authenticators;
 using Tweets.Data;
-
 namespace Tweets.Data
 {
     public class TweetService : ITweetService
     {
+        private readonly IConfiguration _configuration;
+        public TweetService(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
         public async Task<List<Tweet>> GetTenUserQueriedTweets(string user_query)
         {
             RestClient client = new RestClient("https://api.twitter.com/2/tweets");
 
             RestRequest request = new RestRequest($"/search/recent?query={user_query}&tweet.fields=public_metrics,created_at&expansions=author_id,attachments.media_keys&media.fields=url&user.fields=name,profile_image_url", DataFormat.Json);
 
-            request.AddParameter("Authorization", string.Format("Bearer " + "AAAAAAAAAAAAAAAAAAAAAKTwRAEAAAAAsF8lPADSnP0qNJCbVlLcHyO61V8%3DtcHGgFrvq3lnihJmBCvqCCSlgVOQCp5Qx5XGt3GZzhuGorJSnd"), ParameterType.HttpHeader);
+            request.AddParameter("Authorization", string.Format("Bearer " + _configuration["BearerToken"]), ParameterType.HttpHeader);
 
             var response = await client.GetAsync<TwitterResponse>(request);
 
@@ -37,7 +42,7 @@ namespace Tweets.Data
 
             RestRequest request = new RestRequest($"/{author_id}/tweets?expansions=author_id&tweet.fields=public_metrics,created_at&user.fields=profile_image_url", DataFormat.Json);
 
-            request.AddParameter("Authorization", string.Format("Bearer " + "AAAAAAAAAAAAAAAAAAAAAKTwRAEAAAAAsF8lPADSnP0qNJCbVlLcHyO61V8%3DtcHGgFrvq3lnihJmBCvqCCSlgVOQCp5Qx5XGt3GZzhuGorJSnd"), ParameterType.HttpHeader);
+            request.AddParameter("Authorization", string.Format("Bearer " + _configuration["BearerToken"]), ParameterType.HttpHeader);
 
             var response = await client.GetAsync<TwitterResponse>(request);
             
